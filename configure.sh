@@ -24,6 +24,9 @@ echo $2 | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8C5E2FF1C39
 #Start VNC/reset changes
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -console
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate
+defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
+launchctl unload /System/Library/LaunchDaemons/com.apple.screensharing.plist  
+launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist
 
 #install ngrok
 brew install --cask ngrok
